@@ -1,0 +1,49 @@
+﻿@model VRodriguezMovie.Models.Movie
+@{
+    ViewData["Title"] = "GetFavorito";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Favoritos</h1>
+
+<head>
+	<link rel="stylesheet" href="~/css/Cards.css" />
+	</head>
+
+      <div class=row>
+         @foreach(VRodriguezMovie.Models.Movie movie in Model.Movies)
+    {
+        <div class=col>
+        <article class="card">
+        <img
+    class="card__background"
+    src="@movie.Imagen"
+     alt=""
+    width="1920"
+    height="2193"
+  />
+  <div class="card__content | overflow-scroll">
+    <div class="card__content--container | overflow-scroll">
+         <p style="display:none">@movie.Id</p>
+      <h2 class="card__title">@movie.Titulo</h2>
+      <p class="card__description">
+      @movie.Descripcion
+        @using (Html.BeginForm("DeleteFavorites", "Movie",new { Id = movie.Id}))
+              {
+                   <div >
+                      <input type='submit' value="Eliminar Favoritos" class="card__button" onclick="return confirm('¿Desea eliminar de favoritos?');" />
+                  </div>
+              }    
+      </p>
+      
+    
+    </div>
+  
+  </div>
+  </article>
+
+   </div>
+  
+    }
+    </div>
+
